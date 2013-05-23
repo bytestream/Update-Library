@@ -1,4 +1,4 @@
-package com.kbrahney.updater.misc;
+package com.kbrahney.updater.Misc;
 
 import java.io.IOException;
 import java.util.logging.*;

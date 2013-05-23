@@ -1,7 +1,7 @@
 package com.kbrahney.updater;
 
 import java.util.ArrayList;
-import com.kbrahney.updater.io.Download;
+import com.kbrahney.updater.IO.Download;
 
 /**
  *

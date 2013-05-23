@@ -1,11 +1,11 @@
-package com.kbrahney.updater.io;
+package com.kbrahney.updater.IO;
 
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.kbrahney.updater.misc.Log;
+import com.kbrahney.updater.Misc.Log;
 
 /**
  *
