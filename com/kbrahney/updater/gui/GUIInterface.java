@@ -118,9 +118,4 @@ public class GUIInterface extends JFrame implements ActionListener {
     public void changeUpdateText(String message) {
         this.lblUpdateText.setText(message);
     }
-
-
-
-
-
 }
