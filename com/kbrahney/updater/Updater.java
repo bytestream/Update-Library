@@ -23,7 +23,7 @@ public class Updater {
             return false;
         }
         else {
-            ArrayList<String> data = Download.getURL(getVersionURL());
+            ArrayList<String> data = Download.getFileData(getVersionURL());
             if (data == null) {
                 return false;
             } else {
