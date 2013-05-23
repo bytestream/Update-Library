@@ -14,7 +14,7 @@ import com.kbrahney.updater.GUI.Interface;
 public class Driver {
 
     public static void main (String[] args) {
-        Interface g = new Interface();
+        //Interface g = new Interface();
         GUIInterface g2 = new GUIInterface();
     }
 }
