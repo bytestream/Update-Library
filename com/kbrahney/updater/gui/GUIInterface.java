@@ -65,6 +65,7 @@ public class GUIInterface extends JFrame implements ActionListener {
         this.updateText.setVisible(true);
 
         this.scrollPane = new JScrollPane(this.updateText);
+        this.scrollPane.setAutoscrolls(true);
         this.scrollPane.setVisible(false);
 
 
@@ -117,5 +118,9 @@ public class GUIInterface extends JFrame implements ActionListener {
 
     public void changeUpdateText(String message) {
         this.lblUpdateText.setText(message);
+    }
+
+    public void updateProgressBar(int value) {
+        this.progressBar.setValue(value);
     }
 }

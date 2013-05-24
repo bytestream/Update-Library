@@ -15,6 +15,20 @@ public class Driver {
 
     public static void main (String[] args) {
         //Interface g = new Interface();
-        GUIInterface g2 = new GUIInterface();
+        GUIInterface g = new GUIInterface();
+
+        //g.updateProgressBar(50);
+
+        for(int i = 0; i <= 10; i++) {
+            g.addMessageToView("The update is " + i * 10 + "%");
+            g.updateProgressBar(i*10);
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e) {
+                //do nothing
+            }
+        }
+
     }
 }
