@@ -14,17 +14,16 @@ import com.kbrahney.updater.Misc.Log;
  * Created: 23/05/2013 10:29:21
  */
 public class Download {
-
     /**
      * Pull a string array (ArrayList) of each line from a given URL
-     * @param urll A web address to connect to
+     * @param urlString A web address to connect to
      * @return ArrayList of line separated data
      */
-    public static ArrayList getFileData(String urll) {
+    public static ArrayList getFileData(String urlString) {
         ArrayList<String> data = new ArrayList<String>();
 
         try {
-            URL url = new URL(urll);
+            URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
@@ -48,12 +47,12 @@ public class Download {
      * Return the content length value from the HTTP headers of a given URL.<br />
      * <b>Note:</b> this value may not accurately represent the file size, hence
      * when downloading, we download in chunks until data size is > buffer size.
-     * @param urll <b>String</b> The URL to get the content-length of
+     * @param urlString <b>String</b> The URL to get the content-length of
      * @return <b>int</b> size of requested file at given URL
      */
-    public int getFileSize(String urll) {
+    public static int getFileSize(String urlString) {
         try {
-            URL url = new URL(urll);
+            URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
             return conn.getContentLength();
         } catch (MalformedURLException ex) {
@@ -67,15 +66,15 @@ public class Download {
 
     /**
      * Downloads a file from a given URL.
-     * @param urll <b>String</b> The URL of which to download the file from
+     * @param urlString <b>String</b> The URL of which to download the file from
      * @return <b>byte[]</b> a byte array of the downloaded file
      */
-    public byte[] downloadFile(String urll) {
+    public static byte[] downloadFile(String urlString) {
         InputStream in;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         try {
-            URL url = new URL(urll);
+            URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
             in = conn.getInputStream();
 
@@ -93,5 +92,6 @@ public class Download {
             return null;
         }
     }
+
 
 }
