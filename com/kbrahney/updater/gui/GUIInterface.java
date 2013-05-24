@@ -8,11 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.text.DefaultCaret;
 
 /**
- * Created with IntelliJ IDEA.
- * User: chris
- * Date: 23/05/2013
- * Time: 21:54
- * To change this template use File | Settings | File Templates.
+ * @author chris
+ * @date 23/05/2013
+ * @time 21:54
  */
 public class GUIInterface extends JFrame implements ActionListener {
 
@@ -39,79 +37,78 @@ public class GUIInterface extends JFrame implements ActionListener {
 
     //constructor
     public GUIInterface() {
-
         //init all of the components
-        this.rootPanel = new JPanel();
-        this.topPanel = new JPanel();
-        this.progressPanel = new JPanel();
-        this.commandPanel = new JPanel();
-        this.buttonPanel = new JPanel();
-        this.detailsPanel = new JPanel();
+        rootPanel = new JPanel();
+        topPanel = new JPanel();
+        progressPanel = new JPanel();
+        commandPanel = new JPanel();
+        buttonPanel = new JPanel();
+        detailsPanel = new JPanel();
 
-        this.progressBar = new JProgressBar();
-        this.progressBar.setPreferredSize(new Dimension(500, 30));
+        progressBar = new JProgressBar();
+        progressBar.setPreferredSize(new Dimension(500, 30));
 
-        this.btnDetails = new JButton("Details");
-        this.btnDetails.addActionListener(this);
+        btnDetails = new JButton("Details");
+        btnDetails.addActionListener(this);
 
-        this.btnCancel = new JButton("Cancel");
-        this.btnCancel.addActionListener(this);
+        btnCancel = new JButton("Cancel");
+        btnCancel.addActionListener(this);
 
-        this.lblUpdateText = new JLabel("Initialising. . .");
-        this.lblUpdateText.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        lblUpdateText = new JLabel("Initialising. . .");
+        lblUpdateText.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
 
-        this.updateText = new JTextArea(10, 40);
-        this.updateText.setBorder(BorderFactory.createLoweredBevelBorder());
-        this.updateText.setEnabled(false);
-        this.updateText.setVisible(true);
+        updateText = new JTextArea(10, 40);
+        updateText.setBorder(BorderFactory.createLoweredBevelBorder());
+        updateText.setEnabled(false);
+        updateText.setVisible(true);
 
-        this.scrollPane = new JScrollPane(this.updateText);
-        this.scrollPane.setAutoscrolls(true);
-        this.scrollPane.setVisible(false);
-        DefaultCaret caret = (DefaultCaret)this.updateText.getCaret();
+        scrollPane = new JScrollPane(updateText);
+        scrollPane.setAutoscrolls(true);
+        scrollPane.setVisible(false);
+        DefaultCaret caret = (DefaultCaret)updateText.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         //add components to the interface
-        this.add(this.rootPanel);
+        add(rootPanel);
 
         //sets up the root of the window
-        this.rootPanel.setLayout(new BorderLayout());
-        this.rootPanel.add(this.topPanel, BorderLayout.NORTH);
-        this.rootPanel.add(this.detailsPanel, BorderLayout.SOUTH);
+        rootPanel.setLayout(new BorderLayout());
+        rootPanel.add(topPanel, BorderLayout.NORTH);
+        rootPanel.add(detailsPanel, BorderLayout.SOUTH);
 
         //the top half of the screen
-        this.topPanel.setLayout(new BorderLayout());
-        this.topPanel.add(this.progressPanel, BorderLayout.NORTH);
-        this.topPanel.add(this.commandPanel, BorderLayout.SOUTH);
+        topPanel.setLayout(new BorderLayout());
+        topPanel.add(progressPanel, BorderLayout.NORTH);
+        topPanel.add(commandPanel, BorderLayout.SOUTH);
 
-        this.progressPanel.add(this.progressBar);
+        progressPanel.add(progressBar);
 
-        this.buttonPanel.add(this.btnDetails);
-        this.buttonPanel.add(this.btnCancel);
+        buttonPanel.add(btnDetails);
+        buttonPanel.add(btnCancel);
 
-        this.commandPanel.setLayout(new BorderLayout());
-        this.commandPanel.add(this.lblUpdateText, BorderLayout.WEST);
-        this.commandPanel.add(this.buttonPanel, BorderLayout.EAST);
+        commandPanel.setLayout(new BorderLayout());
+        commandPanel.add(lblUpdateText, BorderLayout.WEST);
+        commandPanel.add(buttonPanel, BorderLayout.EAST);
 
-        this.detailsPanel.add(this.scrollPane);
+        detailsPanel.add(scrollPane);
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
     }
 
 
     //methods
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.btnDetails) {
-            if(!this.scrollPane.isVisible())
-                this.scrollPane.setVisible(true);
+        if(e.getSource() == btnDetails) {
+            if(!scrollPane.isVisible())
+                scrollPane.setVisible(true);
             else
-                this.scrollPane.setVisible(false);
-            this.pack();
+                scrollPane.setVisible(false);
+            pack();
         }
-        if (e.getSource() == this.btnCancel) {
+        if (e.getSource() == btnCancel) {
             // handle clean exit of update
             System.exit(1);
         }
@@ -123,7 +120,7 @@ public class GUIInterface extends JFrame implements ActionListener {
      * @param message <b>String</b> Message to show to the user
      */
     public void addMessageToView(String message) {
-        this.updateText.append(message + "\n");
+        updateText.append(message + "\n");
         changeUpdateText(message);
     }
 
@@ -132,15 +129,23 @@ public class GUIInterface extends JFrame implements ActionListener {
      * @param message <b>String</b> Message to display to the user
      */
     public void changeUpdateText(String message) {
-        this.lblUpdateText.setText(message);
+        lblUpdateText.setText(message);
     }
 
     /**
      * Sets the progress bars current value to n
      * @param value <b>int</b> Number to update to
      */
-    public void updateProgressBar(int value) {
-        this.progressBar.setValue(value);
+    public void setProgressBar(int value) {
+        progressBar.setValue(value);
+    }
+
+    /**
+     * Returns the progress bar's current value
+     * @return <b>int</b> the current value of the progress bar
+     */
+    public int getProgressValue() {
+        return progressBar.getValue();
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.kbrahney.updater.IO;
 
+import com.kbrahney.updater.GUI.GUIInterface;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -93,5 +94,39 @@ public class Download {
         }
     }
 
+    /**
+     * Downloads a file from a given URL and updates the progress bar on the GUI
+     * with the remaining download time calculated by
+     * (currentBytes / totalBytes) % 100
+     * @param urlString <b>String</b> The URL to download the file from
+     * @param view <b>GUIInterface</b> Interface Object so we can update interface components
+     * @return <b>byte[]</b> a byte array of the downloaded file
+     */
+    public static byte[] downloadFile(String urlString, GUIInterface view) {
+        int fileSize = getFileSize(urlString);
+        InputStream in;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        try {
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+            in = conn.getInputStream();
+
+            byte[] bytes = new byte[4096];
+            int len, count = 0;
+            while ((len = in.read(bytes)) > 0) {
+                baos.write(bytes, 0, len);
+                count += len;
+                view.setProgressBar((count / fileSize) % 100);
+            }
+            return baos.toByteArray();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (IOException ioe) {
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ioe);
+            return null;
+        }
+    }
 
 }
