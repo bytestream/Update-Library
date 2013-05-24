@@ -16,12 +16,13 @@ public class Driver {
     public static void main (String[] args) {
         //Interface g = new Interface();
         GUIInterface g = new GUIInterface();
+        Driver.viewUpdateTest(g);
+    }
 
-        //g.updateProgressBar(50);
-
+    static private void viewUpdateTest(GUIInterface view) {
         for(int i = 0; i <= 10; i++) {
-            g.addMessageToView("The update is " + i * 10 + "%");
-            g.updateProgressBar(i*10);
+            view.addMessageToView("The update is " + i * 10 + "%");
+            view.updateProgressBar(i*10);
             try {
                 Thread.sleep(1000);
             }
@@ -29,6 +30,6 @@ public class Driver {
                 //do nothing
             }
         }
-
     }
+
 }
