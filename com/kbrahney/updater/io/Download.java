@@ -1,22 +1,25 @@
-package com.kbrahney.updater.IO;
+package com.kbrahney.updater.io;
 
-import com.kbrahney.updater.GUI.GUIInterface;
+import com.kbrahney.updater.gui.GUIInterface;
+import com.kbrahney.updater.misc.Log;
+
 import java.io.*;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.kbrahney.updater.Misc.Log;
 
 /**
- *
  * @author Kieran
- * File: Download.java
- * Created: 23/05/2013 10:29:21
+ *         File: Download.java
+ *         Created: 23/05/2013 10:29:21
  */
 public class Download {
     /**
      * Pull a string array (ArrayList) of each line from a given URL
+     *
      * @param urlString A web address to connect to
      * @return ArrayList of line separated data
      */
@@ -48,6 +51,7 @@ public class Download {
      * Return the content length value from the HTTP headers of a given URL.<br />
      * <b>Note:</b> this value may not accurately represent the file size, hence
      * when downloading, we download in chunks until data size is > buffer size.
+     *
      * @param urlString <b>String</b> The URL to get the content-length of
      * @return <b>int</b> size of requested file at given URL
      */
@@ -67,6 +71,7 @@ public class Download {
 
     /**
      * Downloads a file from a given URL.
+     *
      * @param urlString <b>String</b> The URL of which to download the file from
      * @return <b>byte[]</b> a byte array of the downloaded file
      */
@@ -98,8 +103,9 @@ public class Download {
      * Downloads a file from a given URL and updates the progress bar on the GUI
      * with the remaining download time calculated by
      * (currentBytes / totalBytes) % 100
+     *
      * @param urlString <b>String</b> The URL to download the file from
-     * @param view <b>GUIInterface</b> Interface Object so we can update interface components
+     * @param view      <b>GUIInterface</b> Interface Object so we can update interface components
      * @return <b>byte[]</b> a byte array of the downloaded file
      */
     public static byte[] downloadFile(String urlString, GUIInterface view) {

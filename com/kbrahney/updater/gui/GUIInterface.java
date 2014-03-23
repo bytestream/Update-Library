@@ -1,11 +1,10 @@
-package com.kbrahney.updater.GUI;
+package com.kbrahney.updater.gui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.text.DefaultCaret;
 
 /**
  * @author chris
@@ -65,7 +64,7 @@ public class GUIInterface extends JFrame implements ActionListener {
         scrollPane = new JScrollPane(updateText);
         scrollPane.setAutoscrolls(true);
         scrollPane.setVisible(false);
-        DefaultCaret caret = (DefaultCaret)updateText.getCaret();
+        DefaultCaret caret = (DefaultCaret) updateText.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         //add components to the interface
@@ -101,8 +100,8 @@ public class GUIInterface extends JFrame implements ActionListener {
     //methods
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == btnDetails) {
-            if(!scrollPane.isVisible())
+        if (e.getSource() == btnDetails) {
+            if (!scrollPane.isVisible())
                 scrollPane.setVisible(true);
             else
                 scrollPane.setVisible(false);
@@ -117,6 +116,7 @@ public class GUIInterface extends JFrame implements ActionListener {
     /**
      * Update the GUI with the latest update feed. This updates both the
      * label and also appends to the details pane.
+     *
      * @param message <b>String</b> Message to show to the user
      */
     public void addMessageToView(String message) {
@@ -126,6 +126,7 @@ public class GUIInterface extends JFrame implements ActionListener {
 
     /**
      * Updates the label in the GUI with the latest update feed
+     *
      * @param message <b>String</b> Message to display to the user
      */
     public void changeUpdateText(String message) {
@@ -134,6 +135,7 @@ public class GUIInterface extends JFrame implements ActionListener {
 
     /**
      * Sets the progress bars current value to n
+     *
      * @param value <b>int</b> Number to update to
      */
     public void setProgressBar(int value) {
@@ -142,6 +144,7 @@ public class GUIInterface extends JFrame implements ActionListener {
 
     /**
      * Returns the progress bar's current value
+     *
      * @return <b>int</b> the current value of the progress bar
      */
     public int getProgressValue() {
@@ -152,17 +155,18 @@ public class GUIInterface extends JFrame implements ActionListener {
      * Send an information dialog box to the user telling them
      * that there are no available updates.<br />
      * <b>Best used after isUpdateAvailable() has returned false.</b>
+     *
      * @param message <b>String</b> Message to display to the user (in the dialog box)
-     * @param title <b>String</b> Title of the dialog box
+     * @param title   <b>String</b> Title of the dialog box
      */
     public void displayNoUpdate(String message, String title) {
         String msg = (message == null || message.equals("")) ? "You are "
                 + "currently running the most up to date version of this software" :
-            message;
+                message;
         String ttle = (title == null || title.equals("")) ? "No update available" :
-            title;
+                title;
 
-        JOptionPane.showMessageDialog(this, msg,  ttle, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, msg, ttle, JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -170,16 +174,17 @@ public class GUIInterface extends JFrame implements ActionListener {
      * for the given software package. The user is given the option to update
      * to the latest software version or cancel.<br />
      * <b>Best used after isUpdateAvailable() has returned true</b>
+     *
      * @param message <b>String</b> Message to display to the user (in the dialog box)
-     * @param title <b>String</b> Title of the dialog box
+     * @param title   <b>String</b> Title of the dialog box
      * @return <b>int</b> Check this value against JOptionPane.OK_OPTION and proceed
-     *                    accordingly (value of OK_OPTION assumes they want to update.)
+     *         accordingly (value of OK_OPTION assumes they want to update.)
      */
     public int displayUpdateAvailable(String message, String title) {
         String msg = (message == null || message.equals("")) ? "An update is available."
                 + " Would you like to update to the latest version?" : message;
         String ttle = (title == null || title.equals("")) ? "Update available!" :
-            title;
+                title;
 
         return JOptionPane.showConfirmDialog(this, msg, ttle, JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
