@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  *         Created: 23/05/2013 10:29:21
  */
 public class Download {
+
     /**
      * Pull a string array (ArrayList) of each line from a given URL
      *

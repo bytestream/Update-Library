@@ -1,4 +1,4 @@
-package com.kbrahney.updater.test;
+package test;
 
 
 import com.kbrahney.updater.gui.GUIInterface;

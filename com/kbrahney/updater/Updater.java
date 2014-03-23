@@ -11,6 +11,9 @@ import java.util.ArrayList;
  */
 public class Updater {
 
+    /**
+     * URL to get the project version number
+     */
     private String VERSION_URL = "";
 
     /**
@@ -29,10 +32,7 @@ public class Updater {
             } else {
                 float version = Float.parseFloat(data.get(0));
 
-                if (version > currentVersion)
-                    return true;
-                else
-                    return false;
+                return version > currentVersion;
             }
         }
     }
